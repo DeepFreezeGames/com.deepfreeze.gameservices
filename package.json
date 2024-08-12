@@ -1,0 +1,30 @@
+{
+  "name": "com.deepfreeze.gameservices",
+  "displayName": "Game Services",
+  "author": {
+    "name": "Deep Freeze Games", 
+    "url": "https://github.com/DeepFreezeGames"
+  },
+  "registry": "https://github.com/DeepFreezeGames/com.deepfreeze.gameservices.git",
+  "version": "1.0.0",
+  "category": "Unity",
+  "unity": "2019.2",
+  "documentationUrl": "https://github.com/DeepFreezeGames/com.deepfreeze.gameservices",
+  "description": "A Unity Package Manager package that is used to manage sub-services in your game or application",
+  "keywords": [
+    "unity",
+    "packages",
+    "services",
+    "service",
+    "manager"
+  ],
+  "dependencies": {
+  },
+  "samples": [
+    {
+      "displayName": "Simple Sample Services",
+      "description": "This sample demonstrates a couple different approaches to building services with Game Services",
+      "path": "Samples~/BasicServicesExample"
+    }
+  ]
+}
