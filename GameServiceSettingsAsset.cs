@@ -34,7 +34,7 @@ namespace GameServices
             }
         }
 
-        [SerializeField] private Settings settings = new();
+        [SerializeField] internal Settings settings = new();
         internal static Settings Settings => Asset.settings;
     }
 }

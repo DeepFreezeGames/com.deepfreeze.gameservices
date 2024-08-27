@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEditor;
+using UnityEngine;
 
 namespace GameServices.Editor
 {
@@ -15,7 +16,18 @@ namespace GameServices.Editor
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
+            serializedObject.Update();
+           
+            _asset.settings.autoInitializeServices = EditorGUILayout.Toggle("Auto-Initialize Services", _asset.settings.autoInitializeServices);
+            
+            EditorGUILayout.Space();
+            
+            EditorGUILayout.LabelField("Logging", EditorStyles.boldLabel);
+            _asset.settings.logMessages = EditorGUILayout.Toggle("Log Messages", _asset.settings.logMessages);
+            _asset.settings.logWarnings = EditorGUILayout.Toggle("Log Warnings", _asset.settings.logWarnings);
+            _asset.settings.logErrors = EditorGUILayout.Toggle("Log Errors", _asset.settings.logErrors);
+            
+            serializedObject.ApplyModifiedProperties();
         }
         
         [SettingsProvider]
