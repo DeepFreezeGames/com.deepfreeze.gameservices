@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameServices
@@ -8,6 +9,9 @@ namespace GameServices
     {
         [Tooltip("Automatically initialized all game services when the game starts")]
         public bool autoInitializeServices = false;
+
+        [Header("Disabled Services")] 
+        public List<string> disabledServices = new();
 
         [Header("Logging")] 
         public bool logMessages = true;

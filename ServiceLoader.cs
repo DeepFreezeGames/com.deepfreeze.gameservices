@@ -120,6 +120,12 @@ namespace GameServices
                 LogWarning($"Trying to initialize service of type {service.ServiceType.Name} but an instance is already running");
                 return;
             }
+            
+            if(GameServiceSettingsAsset.Settings.disabledServices.Contains(service.ServiceType.FullName))
+            {
+                Log($"Service ({service.ServiceType.FullName}) is disabled");
+                return;
+            }
                 
             try
             {
