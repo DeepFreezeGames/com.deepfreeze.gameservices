@@ -153,6 +153,9 @@ namespace GameServices.Editor
                 {
                     foreach (var service in Services)
                     {
+                        var enabled = !GameServiceSettingsAsset.Settings.disabledServices.Contains(service.Type.FullName);
+                        GUI.color = enabled ? Color.white : Color.gray;
+                        GUI.contentColor = enabled ? Color.white : Color.gray;
                         using (new EditorGUILayout.HorizontalScope("box", GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(false)))
                         {
                             GUI.color = GetServiceIndicatorColor(service.Type);
@@ -161,12 +164,31 @@ namespace GameServices.Editor
                             
                             using (new EditorGUILayout.VerticalScope(GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(false)))
                             {
-                                GUILayout.Label($"{service.SortOrder}\t{service.Type.Name}", EditorStyles.boldLabel);
+                                using(new EditorGUILayout.HorizontalScope())
+                                {
+                                    GUILayout.Label($"{service.SortOrder}\t{service.Type.Name}", EditorStyles.boldLabel);
+                                    var oldColor = GUI.contentColor;
+                                    GUI.contentColor = Color.white;
+                                    if(GUILayout.Button(enabled ? "Disable" : "Enable", EditorStyles.miniButton, GUILayout.ExpandWidth(false)))
+                                    {
+                                        if(enabled)
+                                        {
+                                            GameServiceSettingsAsset.Settings.disabledServices.Add(service.Type.FullName);
+                                        }   
+                                        else
+                                        {
+                                            GameServiceSettingsAsset.Settings.disabledServices.Remove(service.Type.FullName);
+                                        }
+                                    }
+                                    GUI.contentColor = oldColor;
+                                }
                                 EditorGUILayout.LabelField("\tFull Class Name", service.Type.FullName);
                                 EditorGUILayout.LabelField("\tService Type", service.StaticService ? "Static": "Instanced");
                                 EditorGUILayout.LabelField("\tAsync", service.IsAsync.ToString());
                             }
                         }
+                        GUI.color = Color.white;
+                        GUI.contentColor = Color.white;
                     }
                 }
                 EditorGUILayout.EndScrollView();
