@@ -13,7 +13,7 @@ namespace GameServices.Editor
         private const BindingFlags MethodFlags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
         
         private static List<FoundService> _services;
-        private static List<FoundService> Services
+        internal static List<FoundService> Services
         {
             get
             {
